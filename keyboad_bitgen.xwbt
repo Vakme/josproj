@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/lab_jos_old2/bielabra/projekt/project/keyboad.ncd
+OUTFILE=/home/lab_jos_old2/bielabra/projekt/project/keyboad.bit
+FAMILY=Spartan3A and Spartan3AN
+PART=xc3s700an-4fgg484
+WORKINGDIR=/home/lab_jos_old2/bielabra/projekt/project
+LICENSE=ISE
+USER_INFO=210825174_174171439_210552577_202

@@ -1,0 +1,8 @@
+INTSTYLE=impact
+INFILE=/home/lab_jos/bielabra/projekt/project/impact.xsl
+OUTFILE=/home/lab_jos/bielabra/projekt/project/impact.xsl
+FAMILY=Multiple
+PART=Multiple
+WORKINGDIR=/home/lab_jos/bielabra/projekt/project
+LICENSE=iMPACT
+USER_INFO=iMPACT

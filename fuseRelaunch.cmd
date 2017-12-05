@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/home/lab_jos/bielabra/projekt/project/keyboad_isim_beh.exe" -prj "/home/lab_jos/bielabra/projekt/project/keyboad_beh.prj" "work.keyboad" "work.glbl" 
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/home/lab_jos_old2/bielabra/projekt/project/wavgn_tb_isim_beh.exe" -prj "/home/lab_jos_old2/bielabra/projekt/project/wavgn_tb_beh.prj" "work.wavgn_tb" "work.glbl" 

@@ -18,7 +18,7 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module clockdiv #(parameter div = 1000000)(
+module clockdiv #(parameter div = 10000)(
     input clk,
     input rst,
     output reg slow_clk

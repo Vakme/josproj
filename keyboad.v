@@ -23,10 +23,15 @@ module keyboad(
 	 input rst,
     input [3:0] row,
     output [3:0] col,
-    output [7:0] diods
+    output [7:0] diods,
+	 output waveR,
+	 output waveL
     );
 
 	clockdiv clkdiv(.rst(rst), .clk(clk), .slow_clk(slow_clk));
 	keypad kypd(.clk(slow_clk), .row(row), .col(col), .diods(diods));
+	wavegen wavgn(.clk(clk), .diods(diods), .rst(rst), .wave(waveR));
+	
+	assign waveL = waveR;
 
 endmodule
