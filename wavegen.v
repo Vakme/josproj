@@ -19,63 +19,108 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module wavegen(
-    input clk,
-	 input rst,
-	 input [7:0] diods,
-    output reg wave
-    );
+	input clk,
+	input rst,
+	input [7:0] diods,
+   output reg wave
+   );
 	 
-	 localparam c = 2626, 
-					d = 2947, 
-					e = 3306, 
-					f = 3492, 
-					g = 3920, 
-					a = 4400,
-					h = 4949, 
-					C = 5232, 
-					D = 5873, 
-					E = 6593, 
-					F = 6985, 
-					G = 7840, 
-					A = 8800, 
-					H = 9888;
-					//idle = 1;
+	localparam 	c = 500000000/(2626*2), 
+					d = 500000000/(2947*2), 
+					e = 500000000/(3306*2),
+					f = 500000000/(3492*2),
+					g = 500000000/(3920*2),
+					a = 500000000/(4400*2),
+					h = 500000000/(4949*2),
+					C = 500000000/(5232*2),
+					D = 500000000/(5873*2),
+					E = 500000000/(6593*2),
+					F = 500000000/(6985*2),
+					G = 500000000/(7840*2),
+					A = 500000000/(8800*2),
+					H = 500000000/(9888*2);
+	
+	reg [25:0] counter;
+	reg [25:0] counter2;
+	reg [25:0] div;
 	 
-	 signalscaler #(.freq(c)) clkdivwave1(.rst(rst), .clk(clk), .scaledsignal(scaleC));
-	 signalscaler #(.freq(d)) clkdivwave2(.rst(rst), .clk(clk), .scaledsignal(scaleD));
-	 signalscaler #(.freq(e)) clkdivwave3(.rst(rst), .clk(clk), .scaledsignal(scaleE));
-	 signalscaler #(.freq(f)) clkdivwave4(.rst(rst), .clk(clk), .scaledsignal(scaleF));
-	 signalscaler #(.freq(g)) clkdivwave5(.rst(rst), .clk(clk), .scaledsignal(scaleG));
-	 signalscaler #(.freq(a)) clkdivwave6(.rst(rst), .clk(clk), .scaledsignal(scaleA));
-	 signalscaler #(.freq(h)) clkdivwave7(.rst(rst), .clk(clk), .scaledsignal(scaleH));
-	 signalscaler #(.freq(C)) clkdivwave8(.rst(rst), .clk(clk), .scaledsignal(scaleHighC));
+	always @(posedge rst or posedge clk)
+	begin
+		if (rst)
+            div <= 0;
+		else
+		begin
+			case(~diods)
+				8'b11101110:
+				begin
+					div <= c;
+					counter2 <= 0;
+				end
+				8'b11101101:
+				begin
+					div <= d;
+					counter2 <= 0;
+				end
+				8'b11101011:
+				begin
+					div <= e;
+					counter2 <= 0;
+				end
+				8'b11100111:
+				begin
+					div <= f;
+					counter2 <= 0;
+				end
+				8'b11011110:
+				begin
+					div <= g;
+					counter2 <= 0;
+				end
+				8'b11011101:
+				begin
+					div <= a;
+					counter2 <= 0;
+				end
+				8'b11011011:
+				begin
+					div <= h;
+					counter2 <= 0;
+				end
+				8'b11010111:
+				begin
+					div <= C;
+					counter2 <= 0;
+				end
+				//8'b11111111:
+				default:
+				begin
+					counter2 <= counter2 + 1;
+					if(counter2 >= 2500000)
+					begin
+						counter2 <= 0;
+						div <= 25'b1111111111111111111111111;
+					end
+				end
+			endcase
+		end
+	end	
 
-	 //signalscaler #(.freq(idle)) clkdivwave0(.rst(rst), .clk(clk), .scaledsignal(scaleNone));
-	 
-	 always @(posedge clk)
-	 begin
-		case(~diods)
-			8'b11101110:
-				wave <= scaleC;
-			8'b11101101:
-				wave <= scaleD;
-			8'b11101011:
-				wave <= scaleE;
-			8'b11100111:
-				wave <= scaleF;
-			8'b11011110:
-				wave <= scaleG;
-			8'b11011101:
-				wave <= scaleA;
-			8'b11011011:
-				wave <= scaleH;
-			8'b11010111:
-				wave <= scaleHighC;
-			8'b00000000:
-				wave <= 0;
-		endcase
-	 end
-			
-	 
-
+	always@(posedge rst or posedge clk)
+	begin
+		if (rst)
+		begin
+			wave <= 0;
+			counter <= 0;
+		end
+		else
+		begin
+			counter <= counter + 1;
+         if (counter >= div)
+         begin
+				counter <= 0;
+            wave <= ~wave;
+         end
+		end
+	end
+	
 endmodule

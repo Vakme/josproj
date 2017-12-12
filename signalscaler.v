@@ -18,17 +18,14 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module signalscaler #(parameter freq = 440)(
+module signalscaler(
 input clk,
 input rst,
+input [25:0] div,
 output reg scaledsignal
     );
 
 reg [25:0] counter;
-
-localparam procFreq = 500000000;
-
-localparam div = procFreq/(freq*2);
 
 always@(posedge rst or posedge clk)
 begin
