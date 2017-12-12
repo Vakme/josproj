@@ -18,7 +18,7 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module keyboad(
+ module keyboad(
     input clk,
 	 input rst,
     input [3:0] row,

@@ -38,8 +38,8 @@ module wavegen(
 					F = 6985, 
 					G = 7840, 
 					A = 8800, 
-					H = 9888, 
-					idle = 1; 
+					H = 9888;
+					//idle = 1;
 	 
 	 signalscaler #(.freq(c)) clkdivwave1(.rst(rst), .clk(clk), .scaledsignal(scaleC));
 	 signalscaler #(.freq(d)) clkdivwave2(.rst(rst), .clk(clk), .scaledsignal(scaleD));
@@ -50,29 +50,29 @@ module wavegen(
 	 signalscaler #(.freq(h)) clkdivwave7(.rst(rst), .clk(clk), .scaledsignal(scaleH));
 	 signalscaler #(.freq(C)) clkdivwave8(.rst(rst), .clk(clk), .scaledsignal(scaleHighC));
 
-	 signalscaler #(.freq(idle)) clkdivwave0(.rst(rst), .clk(clk), .scaledsignal(scaleNone));
+	 //signalscaler #(.freq(idle)) clkdivwave0(.rst(rst), .clk(clk), .scaledsignal(scaleNone));
 	 
-	 always @*
+	 always @(posedge clk)
 	 begin
 		case(~diods)
 			8'b11101110:
-				wave = scaleC;
+				wave <= scaleC;
 			8'b11101101:
-				wave = scaleD;
+				wave <= scaleD;
 			8'b11101011:
-				wave = scaleE;
+				wave <= scaleE;
 			8'b11100111:
-				wave = scaleF;
+				wave <= scaleF;
 			8'b11011110:
-				wave = scaleG;
+				wave <= scaleG;
 			8'b11011101:
-				wave = scaleA;
+				wave <= scaleA;
 			8'b11011011:
-				wave = scaleH;
+				wave <= scaleH;
 			8'b11010111:
-				wave = scaleHighC;
-			default:
-				wave = 0;
+				wave <= scaleHighC;
+			8'b00000000:
+				wave <= 0;
 		endcase
 	 end
 			
