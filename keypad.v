@@ -30,10 +30,11 @@ module keypad(
 	 (*fsm_encoding = "user"*)
 	 reg [3:0] st = C1, nst = C2;
 	 
-	 always @(posedge clk)
-	 begin
-		st <= nst;
-	 end
+	 always @(posedge clk)//, posedge rst)
+		//if(rst)
+			//st <= C1;
+		//else
+			st <= nst;
 	 
 	 always @(posedge clk)
 	 begin

@@ -1,8 +1,0 @@
-Running: /opt/xilinx/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o /home/lab_jos/bielabra/projekt/project/keyboad_isim_beh.exe -prj /home/lab_jos/bielabra/projekt/project/keyboad_beh.prj work.keyboad work.glbl 
-ISim P.20131013 (signature 0xfbc00daa)
-Number of CPUs detected in this system: 2
-Turning on mult-threading, number of parallel sub-compilation jobs: 4 
-Determining compilation order of HDL files
-Analyzing Verilog file "/home/lab_jos/bielabra/projekt/project/keyboad.v" into library work
-ERROR:HDLCompiler:806 - "/home/lab_jos/bielabra/projekt/project/keyboad.v" Line 29: Syntax error near ".".
-Verilog file /home/lab_jos/bielabra/projekt/project/keyboad.v ignored due to errors
