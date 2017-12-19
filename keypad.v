@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 module keypad(
 	 input clk,
-	 //input rst,
+	 input rst,
 	 input [3:0] row,
 	 output [3:0] col,
     output reg [7:0] diods
@@ -30,10 +30,10 @@ module keypad(
 	 (*fsm_encoding = "user"*)
 	 reg [3:0] st = C1, nst = C2;
 	 
-	 always @(posedge clk)//, posedge rst)
-		//if(rst)
-			//st <= C1;
-		//else
+	 always @(posedge clk, posedge rst)
+		if(rst)
+			st <= C1;
+		else
 			st <= nst;
 	 
 	 always @(posedge clk)

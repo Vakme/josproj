@@ -21,7 +21,7 @@
  module keyboard(
     input clk,
 	 input rst,
-	 //input semitone,
+	 input semitone,
     input [3:0] row,
     output [3:0] col,
     output [7:0] diods,
@@ -30,8 +30,8 @@
     );
 
 	clockdiv clkdiv(.rst(rst), .clk(clk), .slow_clk(slow_clk));
-	keypad kypd(.clk(slow_clk), /*.rst(rst),*/ .row(row), .col(col), .diods(diods));
-	wavegen wavgn(.clk(clk), /*.semitone(semitone),*/ .diods(diods), .rst(rst), .wave(waveR));
+	keypad kypd(.clk(slow_clk), .rst(rst), .row(row), .col(col), .diods(diods));
+	wavegen wavgn(.clk(clk), .semitone(semitone), .diods(diods), .rst(rst), .wave(waveR));
 	
 	assign waveL = waveR;
 

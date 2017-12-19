@@ -32,6 +32,6 @@ NET "row<0>"        LOC = "AB19"  | IOSTANDARD = LVCMOS33 ;
 NET "waveR"          LOC = "V10"  | IOSTANDARD = LVCMOS33 ;
 NET "waveL"          LOC = "Y10"  | IOSTANDARD = LVCMOS33 ;
 #NET "start"      LOC = "T16"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
-#NET "rst"     LOC = "T14"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
-#NET "semitone" LOC = "V15"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
+NET "rst"     LOC = "T14"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
+NET "semitone" LOC = "U15"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
 

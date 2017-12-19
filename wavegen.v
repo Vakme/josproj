@@ -21,7 +21,7 @@
 module wavegen(
 	input clk,
 	input rst,
-	//input semitone,
+	input semitone,
 	input [7:0] diods,
    output reg wave
    );
@@ -55,16 +55,28 @@ module wavegen(
 	
 	reg [25:0] counter;
 	reg [25:0] counter2;
+	reg [25:0] counter3;
 	reg [25:0] div;
-	/*reg make_semitone;
+	reg make_semitone;
 	
 	always @(posedge rst or posedge clk)
 	if(rst)
-	
-	
-	
-	
-	*/
+		make_semitone <= 1'b0;
+	else
+		if(semitone)
+		begin
+			make_semitone <= 1'b1;
+			counter3 <= 0;
+		end
+		else
+		begin
+			counter3 <= counter3 + 1;
+			if(counter3 >= 2500000)
+			begin
+				counter3 <= 0;
+				make_semitone <= 1'b0;
+			end
+		end
 	 
 	always @(posedge rst or posedge clk)
 	begin
@@ -75,12 +87,18 @@ module wavegen(
 			case(~diods)
 				8'b11101110:
 				begin
-					div <= c;
+					if(make_semitone)
+						div <= cis;
+					else
+						div <= c;
 					counter2 <= 0;
 				end
 				8'b11101101:
 				begin
-					div <= d;
+					if(make_semitone)
+						div <= dis;
+					else
+						div <= d;
 					counter2 <= 0;
 				end
 				8'b11101011:
@@ -90,17 +108,26 @@ module wavegen(
 				end
 				8'b11100111:
 				begin
-					div <= f;
+					if(make_semitone)
+						div <= fis;
+					else
+						div <= f;
 					counter2 <= 0;
 				end
 				8'b11011110:
 				begin
-					div <= g;
+					if(make_semitone)
+						div <= gis;
+					else
+						div <= g;
 					counter2 <= 0;
 				end
 				8'b11011101:
 				begin
-					div <= a;
+					if(make_semitone)
+						div <= ais;
+					else
+						div <= a;
 					counter2 <= 0;
 				end
 				8'b11011011:
@@ -110,17 +137,26 @@ module wavegen(
 				end
 				8'b11010111:
 				begin
-					div <= C;
+					if(make_semitone)
+						div <= Cis;
+					else
+						div <= C;
 					counter2 <= 0;
 				end
 				8'b10111110:
 				begin
-					div <= C;
+					if(make_semitone)
+						div <= Cis;
+					else
+						div <= C;
 					counter2 <= 0;
 				end
 				8'b10111101:
 				begin
-					div <= D;
+					if(make_semitone)
+						div <= Dis;
+					else
+						div <= D;
 					counter2 <= 0;
 				end
 				8'b10111011:
@@ -130,17 +166,26 @@ module wavegen(
 				end
 				8'b10110111:
 				begin
-					div <= F;
+					if(make_semitone)
+						div <= Fis;
+					else
+						div <= F;
 					counter2 <= 0;
 				end
 				8'b01111110:
 				begin
-					div <= G;
+					if(make_semitone)
+						div <= Gis;
+					else
+						div <= G;
 					counter2 <= 0;
 				end
 				8'b01111101:
 				begin
-					div <= A;
+					if(make_semitone)
+						div <= Ais;
+					else
+						div <= A;
 					counter2 <= 0;
 				end
 				8'b01111011:
@@ -150,7 +195,10 @@ module wavegen(
 				end
 				8'b01110111:
 				begin
-					div <= C3;
+					if(make_semitone)
+						div <= C3is;
+					else
+						div <= C3;
 					counter2 <= 0;
 				end
 				default:
